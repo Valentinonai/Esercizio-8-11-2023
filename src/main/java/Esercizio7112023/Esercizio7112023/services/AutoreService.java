@@ -5,6 +5,10 @@ import Esercizio7112023.Esercizio7112023.entities.Autore;
 import Esercizio7112023.Esercizio7112023.exceptions.NotFoundException;
 import Esercizio7112023.Esercizio7112023.repositories.AutoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -14,8 +18,9 @@ public class AutoreService {
 @Autowired
 private AutoreRepository autoreRepository;
 
-    public List<Autore> getAllAuthors() {
-            return autoreRepository.findAll();
+    public Page<Autore> getAllAuthors(int page,int size,String orderby) {
+        Pageable p= PageRequest.of(page,size, Sort.by(orderby));
+        return autoreRepository.findAll(p);
     }
 
     public Autore getSingleAuthor(int id) throws NotFoundException {
