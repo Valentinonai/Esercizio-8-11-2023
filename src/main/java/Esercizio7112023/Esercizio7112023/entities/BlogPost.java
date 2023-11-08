@@ -7,6 +7,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "blog_posts")
 public class BlogPost {

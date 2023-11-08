@@ -1,6 +1,7 @@
 package Esercizio7112023.Esercizio7112023.controllers;
 
 import Esercizio7112023.Esercizio7112023.entities.BlogPost;
+import Esercizio7112023.Esercizio7112023.entities.Post;
 import Esercizio7112023.Esercizio7112023.services.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class BlogPostController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public BlogPost saveNewPost(@RequestBody BlogPost p) throws IOException {
+    public BlogPost saveNewPost(@RequestBody Post p) throws IOException {
         return blogPostService.saveNewPost(p);
     }
 
