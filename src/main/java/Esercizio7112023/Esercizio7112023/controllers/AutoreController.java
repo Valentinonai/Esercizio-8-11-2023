@@ -20,7 +20,7 @@ public class AutoreController {
     AutoreService autoreService;
     @GetMapping()
     public Page<Autore> getAllAuthors(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10")int size, @RequestParam(defaultValue = "id")String orderby){
-            return autoreService.getAllAuthors(page,size,orderby);
+            return autoreService.getAllAuthors(page,size>20?10:size,orderby);
     }
     @GetMapping("/{id}")
     public Autore getSingleAuthor(@PathVariable int id){

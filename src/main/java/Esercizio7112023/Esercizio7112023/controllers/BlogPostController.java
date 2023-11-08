@@ -18,7 +18,7 @@ public class BlogPostController {
     BlogPostService blogPostService;
     @GetMapping()
     public Page<BlogPost> getAllBlogPosts(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10")int size, @RequestParam(defaultValue = "id")String orderby){
-        return blogPostService.getAllBlogPosts(page,size,orderby);
+        return blogPostService.getAllBlogPosts(page,size>20?10:size,orderby);
     }
     @GetMapping("/{id}")
     public BlogPost getSingleBlogPost(@PathVariable int id) throws Exception {
