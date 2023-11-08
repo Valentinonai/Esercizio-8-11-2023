@@ -14,29 +14,29 @@ import java.util.List;
 public class BlogPostController {
     @Autowired
     BlogPostService blogPostService;
-  /*  @GetMapping()
+    @GetMapping()
     public List<BlogPost> getAllBlogPosts(){
-
+        return blogPostService.getAllBlogPosts();
     }
     @GetMapping("/{id}")
     public BlogPost getSingleBlogPost(@PathVariable int id) throws Exception {
-
+        return blogPostService.getSingleBlogPost(id);
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public int saveNewPost(@RequestBody BlogPost p) throws IOException {
-
+    public BlogPost saveNewPost(@RequestBody BlogPost p) throws IOException {
+        return blogPostService.saveNewPost(p);
     }
 
     @PutMapping("/{id}")
     public BlogPost modifyBlogPost(@RequestBody BlogPost p,@PathVariable int id) throws IOException {
-
+            return blogPostService.modifyBlogPost(p,id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteSingleBlogPost(@PathVariable int id) throws IOException {
-
-    }*/
+        blogPostService.deleteSingleBlogPost(id);
+    }
 }

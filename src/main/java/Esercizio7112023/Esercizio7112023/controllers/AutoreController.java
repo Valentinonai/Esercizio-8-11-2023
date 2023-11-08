@@ -18,27 +18,27 @@ public class AutoreController {
     AutoreService autoreService;
     @GetMapping()
     public List<Autore> getAllAuthors(){
-
+            return autoreService.getAllAuthors();
     }
     @GetMapping("/{id}")
     public Autore getSingleAuthor(@PathVariable int id){
-
+        return autoreService.getSingleAuthor(id);
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public int saveNewAuthor(@RequestBody Autore a) throws IOException {
-
+    public Autore saveNewAuthor(@RequestBody Autore a) {
+        return autoreService.saveNewAuthor(a);
     }
 
     @PutMapping("/{id}")
-    public Autore modifyAuthor(@RequestBody Autore a,@PathVariable int id) throws IOException {
-
+    public Autore modifyAuthor(@RequestBody Autore a,@PathVariable int id)  {
+        return autoreService.modifyAuthor(a,id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSingleAuthor(@PathVariable int id) throws IOException {
-
+    public void deleteSingleAuthor(@PathVariable int id)  {
+        autoreService.deleteSingleAuthor(id);
     }
 }
