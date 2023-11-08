@@ -9,6 +9,10 @@ import Esercizio7112023.Esercizio7112023.repositories.AutoreRepository;
 import Esercizio7112023.Esercizio7112023.repositories.BlogPostRepository;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,8 +26,9 @@ private BlogPostRepository blogPostRepository;
 @Autowired
 private AutoreRepository autoreRepository;
 
-    public List<BlogPost> getAllBlogPosts(){
-        return blogPostRepository.findAll();
+    public Page<BlogPost> getAllBlogPosts(int page,int size,String orderby){
+        Pageable p= PageRequest.of(page,size, Sort.by(orderby));
+        return blogPostRepository.findAll(p);
     }
 
 

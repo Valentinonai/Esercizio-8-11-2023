@@ -4,6 +4,7 @@ import Esercizio7112023.Esercizio7112023.entities.BlogPost;
 import Esercizio7112023.Esercizio7112023.entities.Post;
 import Esercizio7112023.Esercizio7112023.services.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +17,8 @@ public class BlogPostController {
     @Autowired
     BlogPostService blogPostService;
     @GetMapping()
-    public List<BlogPost> getAllBlogPosts(){
-        return blogPostService.getAllBlogPosts();
+    public Page<BlogPost> getAllBlogPosts(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10")int size, @RequestParam(defaultValue = "id")String orderby){
+        return blogPostService.getAllBlogPosts(page,size,orderby);
     }
     @GetMapping("/{id}")
     public BlogPost getSingleBlogPost(@PathVariable int id) throws Exception {
