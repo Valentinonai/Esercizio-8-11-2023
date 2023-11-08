@@ -44,14 +44,12 @@ private AutoreRepository autoreRepository;
 
     }
 
-    public BlogPost modifyBlogPost(BlogPost p,int id) throws IOException {
+    public BlogPost modifyBlogPost(Post p,int id) throws IOException {
       BlogPost current=this.getSingleBlogPost(id);
         current.setCategoria(p.getCategoria());
         current.setTitolo(p.getTitolo());
-        current.setCover("https://picsum.photos/200/300");
         current.setContenuto(p.getContenuto());
         current.setTempoDiLettura(p.getTempoDiLettura());
-        current.setAutore(p.getAutore());
         return blogPostRepository.save(current);
     }
 

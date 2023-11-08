@@ -32,7 +32,7 @@ public class BlogPostController {
     }
 
     @PutMapping("/{id}")
-    public BlogPost modifyBlogPost(@RequestBody BlogPost p,@PathVariable int id) throws IOException {
+    public BlogPost modifyBlogPost(@RequestBody Post p,@PathVariable int id) throws IOException {
             return blogPostService.modifyBlogPost(p,id);
     }
 
