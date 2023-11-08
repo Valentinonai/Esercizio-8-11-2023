@@ -6,7 +6,6 @@ package Esercizio7112023.Esercizio7112023;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.File;
 import java.io.IOException;
 
 @SpringBootApplication

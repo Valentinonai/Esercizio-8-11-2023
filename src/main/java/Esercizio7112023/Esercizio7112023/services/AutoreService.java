@@ -1,21 +1,12 @@
 package Esercizio7112023.Esercizio7112023.services;
 
 import Esercizio7112023.Esercizio7112023.entities.Autore;
-import Esercizio7112023.Esercizio7112023.entities.BlogPost;
 
+import Esercizio7112023.Esercizio7112023.exceptions.NotFoundException;
 import Esercizio7112023.Esercizio7112023.repositories.AutoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class AutoreService {
@@ -28,18 +19,29 @@ private AutoreRepository autoreRepository;
     }
 
     public Autore getSingleAuthor(int id) {
-        return autoreRepository.findById(id).orElse(()->new Exception(""));
+        return autoreRepository.findById(id).orElseThrow(()->new NotFoundException("Elemento non trovato"));
     }
 
 
-    public int saveNewAuthor(Autore a) throws IOException {
+    public Autore saveNewAuthor(Autore a)  {
+        a.setAvatar("https://ui-avatars.com/api/?name="+a.getNome()+"+"+a.getCognome());
+        return autoreRepository.save(a);
+
 
     }
 
-    public Autore modifyAuthor(Autore a,int id) throws IOException {
-
+    public Autore modifyAuthor(Autore a,int id)  {
+        Autore current=this.getSingleAuthor(id);
+        current.setNome(a.getNome());
+        current.setCognome(a.getCognome());
+        current.setDataDiNascita(a.getDataDiNascita());
+        current.setEmail(a.getEmail());
+        current.setAvatar("https://ui-avatars.com/api/?name="+a.getNome()+"+"+a.getCognome());
+        return autoreRepository.save(current);
     }
 
-    public void deleteSingleAuthor(int id) throws IOException {
+    public void deleteSingleAuthor(int id)  {
+        Autore current=this.getSingleAuthor(id);
+        autoreRepository.delete(current);
     }
 }

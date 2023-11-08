@@ -2,42 +2,54 @@ package Esercizio7112023.Esercizio7112023.services;
 
 import Esercizio7112023.Esercizio7112023.entities.BlogPost;
 
+import Esercizio7112023.Esercizio7112023.exceptions.NotFoundException;
+import Esercizio7112023.Esercizio7112023.repositories.BlogPostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class BlogPostService {
 
-    List<BlogPost> blogPosts=new ArrayList<>();
+@Autowired
+private BlogPostRepository blogPostRepository;
 
-  /*  public List<BlogPost> getAllBlogPosts(){
+    public List<BlogPost> getAllBlogPosts(){
+        return blogPostRepository.findAll();
+    }
 
 
     public BlogPost getSingleBlogPost(int id) {
-
+        return blogPostRepository.findById(id).orElseThrow(()->new NotFoundException("Elemento non trovato"));
     }
 
-    public int saveNewPost(BlogPost p) throws IOException {
-        Random rnd=new Random();
-        p.setId(rnd.nextInt(1,10000));
-        blogPosts.add(p);
-        String obj=p.getId()+"@"+p.getCategoria()+"@"+p.getTitolo()+"@"+"https://picsum.photos/200/300"+"@"+p.getContenuto()+"@"+p.getTempoDiLettura()+"#";
-        FileUtils.writeStringToFile(blogPostFile,obj, StandardCharsets.UTF_8,true);
-        return p.getId();
+    public BlogPost saveNewPost(BlogPost p){
+        p.setCover("https://picsum.photos/200/300");
+        return blogPostRepository.save(p);
+
     }
 
     public BlogPost modifyBlogPost(BlogPost p,int id) throws IOException {
-
+      BlogPost current=this.getSingleBlogPost(id);
+        current.setCategoria(p.getCategoria());
+        current.setTitolo(p.getTitolo());
+        current.setCover("https://picsum.photos/200/300");
+        current.setContenuto(p.getContenuto());
+        current.setTempoDiLettura(p.getTempoDiLettura());
+        current.setAutore(p.getAutore());
+        return blogPostRepository.save(current);
     }
 
     public void deleteSingleBlogPost(int id) throws IOException {
-
-    }*/
+       BlogPost current=this.getSingleBlogPost(id);
+        blogPostRepository.delete(current);
+    }
 }
+
+
+
+
+
+

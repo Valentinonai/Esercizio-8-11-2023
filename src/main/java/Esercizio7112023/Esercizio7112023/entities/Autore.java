@@ -24,4 +24,6 @@ public class Autore {
     private String avatar;
     @OneToMany(mappedBy = "autore")
     List<BlogPost> blogPostList;
+
+
 }
