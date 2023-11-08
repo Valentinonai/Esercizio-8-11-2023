@@ -18,7 +18,7 @@ private AutoreRepository autoreRepository;
             return autoreRepository.findAll();
     }
 
-    public Autore getSingleAuthor(int id) {
+    public Autore getSingleAuthor(int id) throws NotFoundException {
         return autoreRepository.findById(id).orElseThrow(()->new NotFoundException("Elemento non trovato"));
     }
 
