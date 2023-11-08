@@ -5,7 +5,6 @@ import lombok.*;
 
 @Setter
 @Getter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -22,4 +21,17 @@ public class BlogPost {
     @ManyToOne
     @JoinColumn(name = "autore")
     private Autore autore;
+
+    @Override
+    public String toString() {
+        return "BlogPost{" +
+                "id=" + id +
+                ", categoria='" + categoria + '\'' +
+                ", Titolo='" + Titolo + '\'' +
+                ", cover='" + cover + '\'' +
+                ", contenuto='" + contenuto + '\'' +
+                ", tempoDiLettura=" + tempoDiLettura +
+                ", autore=" + autore.getId() +
+                '}';
+    }
 }

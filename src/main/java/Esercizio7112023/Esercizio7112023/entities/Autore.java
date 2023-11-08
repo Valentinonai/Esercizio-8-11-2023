@@ -22,8 +22,8 @@ public class Autore {
     private String email;
     private LocalDate dataDiNascita;
     private String avatar;
-    @OneToMany(mappedBy = "autore")
-    List<BlogPost> blogPostList;
+//    @OneToMany(mappedBy = "autore",fetch = FetchType.EAGER)
+//    List<BlogPost> blogPostList;
 
 
 }
